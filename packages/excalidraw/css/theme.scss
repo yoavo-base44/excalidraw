@@ -144,7 +144,7 @@
   --color-success-contrast-active: #6edf74;
 
   --color-logo-icon: var(--color-primary);
-  --color-logo-text: #190064;
+  --color-logo-text: #1a1a1a;
 
   --border-radius-md: 0.375rem;
   --border-radius-lg: 0.5rem;
@@ -223,19 +223,19 @@
     --scrollbar-thumb: #{$color-gray-8};
     --scrollbar-thumb-hover: #{$color-gray-7};
 
-    --color-slider-track: hsl(244, 23%, 39%);
+    --color-slider-track: hsl(24, 50%, 35%);
 
     // will be inverted to a lighter color.
-    --color-selection: #3530c4;
+    --color-selection: #c44f10;
 
     --color-icon-white: var(--color-gray-90);
 
-    --color-primary: #a8a5ff;
-    --color-primary-darker: #b2aeff;
-    --color-primary-darkest: #beb9ff;
-    --color-primary-light: #4f4d6f;
-    --color-primary-light-darker: #43415e;
-    --color-primary-hover: #bbb8ff;
+    --color-primary: #ff8c4d;
+    --color-primary-darker: #ff9d63;
+    --color-primary-darkest: #ffb07a;
+    --color-primary-light: #6f3a1f;
+    --color-primary-light-darker: #5c2e14;
+    --color-primary-hover: #ffb07a;
 
     --color-disabled: var(--color-gray-70);
 
@@ -270,12 +270,12 @@
     --color-surface-mid: hsl(240 6% 10%);
     --color-surface-lowest: hsl(0, 0%, 7%);
     --color-on-surface: #e3e3e8;
-    --color-brand-hover: #bbb8ff;
-    --color-on-primary-container: #e0dfff;
-    --color-surface-primary-container: #403e6a;
-    --color-brand-active: #d0ccff;
-    --color-border-outline: #8e8d9c;
-    --color-border-outline-variant: #46464f;
-    --color-surface-primary-container: #403e6a;
+    --color-brand-hover: #ffb07a;
+    --color-on-primary-container: #fde8d8;
+    --color-surface-primary-container: #6f3a1f;
+    --color-brand-active: #ffc699;
+    --color-border-outline: #9c8d84;
+    --color-border-outline-variant: #4f4640;
+    --color-surface-primary-container: #6f3a1f;
   }
 }
