@@ -26,6 +26,7 @@ import {
   TextIcon,
   ImageIcon,
   DotsIcon,
+  polygonIcon,
   frameToolIcon,
   EmbedIcon,
   laserPointerToolIcon,
@@ -118,6 +119,7 @@ export const MobileToolbar = ({ app, setAppState }: MobileToolbarProps) => {
       "embeddable",
       "laser",
       "bucketfill",
+      "polygon",
       "magicframe",
     ] as const
   ).filter((tool) => {
@@ -141,6 +143,8 @@ export const MobileToolbar = ({ app, setAppState }: MobileToolbarProps) => {
       ? EmbedIcon
       : activeTool.type === "laser"
       ? laserPointerToolIcon
+      : activeTool.type === "polygon"
+      ? polygonIcon
       : activeTool.type === "bucketfill"
       ? bucketFillIcon
       : activeTool.type === "magicframe"
@@ -298,6 +302,16 @@ export const MobileToolbar = ({ app, setAppState }: MobileToolbarProps) => {
             disabled={isToolButtonDisabled(app, "embeddable")}
           >
             {t("toolBar.embeddable")}
+          </DropdownMenu.Item>
+          <DropdownMenu.Item
+            onSelect={() => app.setActiveTool({ type: "polygon" })}
+            icon={polygonIcon}
+            shortcut={getToolShortcut("polygon")}
+            data-testid="toolbar-polygon"
+            selected={activeTool.type === "polygon"}
+            disabled={isToolButtonDisabled(app, "polygon")}
+          >
+            {t("toolBar.polygon")}
           </DropdownMenu.Item>
           <DropdownMenu.Item
             onSelect={() => app.setActiveTool({ type: "autoshape" })}

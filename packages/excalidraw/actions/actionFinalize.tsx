@@ -305,6 +305,37 @@ export const actionFinalize = register<FormData>({
         });
       }
 
+      if (
+        appState.activeTool.type === "polygon" &&
+        appState.multiElement &&
+        isLineElement(element)
+      ) {
+        // Keep the existing line schema, editing, export and history support.
+        // A polygon always closes exactly, without replacing its final vertex.
+        const points = [...element.points];
+        const first = points[0];
+        const last = points[points.length - 1];
+        if (first && last && (first[0] !== last[0] || first[1] !== last[1])) {
+          points.push(pointFrom<LocalPoint>(first[0], first[1]));
+        }
+        if (isValidPolygon(points)) {
+          scene.mutateElement(element, {
+            points,
+            polygon: true,
+            roundness: null,
+          });
+        } else {
+          const unfinishedId = element.id;
+          newElements = newElements.map((el) =>
+            el.id === unfinishedId
+              ? newElementWith(el, { isDeleted: true })
+              : el,
+          );
+          element = null;
+        }
+        shouldCommit = true;
+      }
+
       if (isLinearElement(element) || isFreeDrawElement(element)) {
         // If the multi point line closes the loop,
         // set the last point to first point.

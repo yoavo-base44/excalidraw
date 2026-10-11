@@ -5979,6 +5979,14 @@ class App extends React.Component<AppProps, AppState> {
       return;
     }
 
+    if (
+      this.state.activeTool.type === "polygon" &&
+      this.state.multiElement &&
+      tool.type !== "polygon"
+    ) {
+      this.actionManager.executeAction(actionFinalize);
+    }
+
     if (this.drawShape.hasPendingGesture()) {
       // switching tools mid-sketch (e.g. paste resets to the selection tool)
       // must not strand the gesture — commit it through the finalize funnel
@@ -6975,6 +6983,15 @@ class App extends React.Component<AppProps, AppState> {
       this.state.editingTextElement ||
       !this.shouldHandleBrowserCanvasDoubleClick(event.type)
     ) {
+      return;
+    }
+    if (this.state.activeTool.type === "polygon") {
+      if (
+        this.state.multiElement &&
+        this.state.multiElement.points.length >= 3
+      ) {
+        this.actionManager.executeAction(actionFinalize);
+      }
       return;
     }
     // case: double-clicking with arrow/line tool selected would both create
@@ -8712,11 +8729,14 @@ class App extends React.Component<AppProps, AppState> {
       this.handleTextOnPointerDown(event, pointerDownState);
     } else if (
       this.state.activeTool.type === "arrow" ||
-      this.state.activeTool.type === "line"
+      this.state.activeTool.type === "line" ||
+      this.state.activeTool.type === "polygon"
     ) {
       this.handleLinearElementOnPointerDown(
         event,
-        this.state.activeTool.type,
+        this.state.activeTool.type === "polygon"
+          ? "line"
+          : this.state.activeTool.type,
         pointerDownState,
       );
     } else if (this.state.activeTool.type === "freedraw") {
@@ -9999,6 +10019,44 @@ class App extends React.Component<AppProps, AppState> {
         "selectedLinearElement is expected to be set",
       );
 
+      if (this.state.activeTool.type === "polygon") {
+        const [x, y] = getGridPoint(
+          pointerDownState.origin.x,
+          pointerDownState.origin.y,
+          event[KEYS.CTRL_OR_CMD] ? null : this.getEffectiveGridSize(),
+        );
+        const point = pointFrom<LocalPoint>(
+          x - multiElement.x,
+          y - multiElement.y,
+        );
+        const lastCommitted = selectedLinearElement.lastCommittedPoint;
+        const points =
+          lastCommitted && multiElement.points.includes(lastCommitted)
+            ? multiElement.points.slice(
+                0,
+                multiElement.points.indexOf(lastCommitted) + 1,
+              )
+            : [...multiElement.points];
+        const last = points[points.length - 1];
+        // The second click of a double-click must not add a duplicate vertex.
+        if (!last || pointDistance(last, point) > 0) {
+          points.push(point);
+        }
+        this.scene.mutateElement(multiElement, { points });
+        this.setState({
+          selectedLinearElement: {
+            ...selectedLinearElement,
+            lastCommittedPoint: points[points.length - 1],
+            selectedPointsIndices: [points.length - 1],
+            initialState: {
+              ...selectedLinearElement.initialState,
+              lastClickedPoint: points.length - 1,
+            },
+          },
+        });
+        return;
+      }
+
       // finalize if completing a loop
       if (
         multiElement.type === "line" &&
@@ -10174,6 +10232,7 @@ class App extends React.Component<AppProps, AppState> {
               roughness: this.state.currentItemRoughness,
               opacity: this.state.currentItemOpacity,
               roundness:
+                this.state.activeTool.type !== "polygon" &&
                 this.state.currentItemRoundness === "round"
                   ? { type: ROUNDNESS.PROPORTIONAL_RADIUS }
                   : null,
@@ -11689,6 +11748,27 @@ class App extends React.Component<AppProps, AppState> {
 
         this.actionManager.executeAction(actionFinalize);
 
+        return;
+      }
+
+      if (
+        this.state.activeTool.type === "polygon" &&
+        isLineElement(newElement)
+      ) {
+        if (!multiElement && this.state.selectedLinearElement) {
+          this.scene.mutateElement(newElement, {
+            points: [pointFrom<LocalPoint>(0, 0)],
+          });
+          this.setState({
+            multiElement: newElement,
+            newElement,
+            selectedLinearElement: {
+              ...this.state.selectedLinearElement,
+              lastCommittedPoint: newElement.points[0],
+              selectedPointsIndices: [0],
+            },
+          });
+        }
         return;
       }
 

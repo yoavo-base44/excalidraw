@@ -152,6 +152,7 @@ export type ToolType =
   | "ellipse"
   | "arrow"
   | "line"
+  | "polygon"
   | "freedraw"
   | "text"
   | "image"
