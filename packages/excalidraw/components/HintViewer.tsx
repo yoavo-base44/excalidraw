@@ -77,6 +77,10 @@ const getHints = ({
     });
   }
 
+  if (activeTool.type === "polygon") {
+    return t("hints.polygon");
+  }
+
   if (activeTool.type === "arrow" || activeTool.type === "line") {
     if (multiMode) {
       return t("hints.linearElementMulti", {

@@ -23,6 +23,7 @@ import {
   MagicIcon,
   mermaidLogoIcon,
   DotsIcon,
+  polygonIcon,
 } from "./icons";
 import {
   ArrowToolButton,
@@ -63,6 +64,7 @@ const ExtraToolsDropdown = ({
   const isFullStylesPanel = useStylesPanelMode() === "full";
   const { TTDDialogTriggerTunnel } = useTunnels();
 
+  const polygonToolSelected = activeTool.type === "polygon";
   const frameToolSelected = activeTool.type === "frame";
   const drawShapeToolSelected = activeTool.type === "autoshape";
   const laserToolSelected = activeTool.type === "laser";
@@ -78,6 +80,7 @@ const ExtraToolsDropdown = ({
       <DropdownMenu.Trigger
         className={clsx("App-toolbar__extra-tools-trigger", {
           "App-toolbar__extra-tools-trigger--selected":
+            polygonToolSelected ||
             frameToolSelected ||
             embeddableToolSelected ||
             (isFullStylesPanel && drawShapeToolSelected) ||
@@ -94,7 +97,9 @@ const ExtraToolsDropdown = ({
         }}
         title={t("toolBar.extraTools")}
       >
-        {frameToolSelected
+        {polygonToolSelected
+          ? polygonIcon
+          : frameToolSelected
           ? frameToolIcon
           : embeddableToolSelected
           ? EmbedIcon
@@ -131,6 +136,16 @@ const ExtraToolsDropdown = ({
           disabled={isToolButtonDisabled(app, "embeddable")}
         >
           {t("toolBar.embeddable")}
+        </DropdownMenu.Item>
+        <DropdownMenu.Item
+          onSelect={() => app.setActiveTool({ type: "polygon" })}
+          icon={polygonIcon}
+          shortcut={getToolShortcut("polygon")}
+          data-testid="toolbar-polygon"
+          selected={polygonToolSelected}
+          disabled={isToolButtonDisabled(app, "polygon")}
+        >
+          {t("toolBar.polygon")}
         </DropdownMenu.Item>
         <DropdownMenu.Item
           onSelect={() => app.setActiveTool({ type: "autoshape" })}

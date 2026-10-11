@@ -18,6 +18,7 @@ import {
   EllipseIcon,
   ArrowIcon,
   LineIcon,
+  polygonIcon,
   FreedrawIcon,
   drawShapeToolIcon,
   TextIcon,
@@ -105,6 +106,12 @@ export const TOOLS = defineTools({
     icon: LineIcon,
     letterKey: KEYS.L,
     numericKey: KEYS["6"],
+    fillable: true,
+  },
+  polygon: {
+    icon: polygonIcon,
+    letterKey: KEYS.P,
+    shiftKey: true,
     fillable: true,
   },
   freedraw: {
