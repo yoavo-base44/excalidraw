@@ -1,0 +1,41 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "sample",
+  "elements": [
+    {
+      "id": "box1", "type": "rectangle", "x": 100, "y": 100, "width": 200, "height": 100,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "#ffec99", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100,
+      "groupIds": [], "frameId": null, "roundness": { "type": 3 }, "seed": 1, "version": 1,
+      "versionNonce": 1, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "box2", "type": "ellipse", "x": 450, "y": 100, "width": 200, "height": 100,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "#a5d8ff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100,
+      "groupIds": [], "frameId": null, "roundness": null, "seed": 2, "version": 1,
+      "versionNonce": 2, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "arrow1", "type": "arrow", "x": 305, "y": 150, "width": 140, "height": 0,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100,
+      "groupIds": [], "frameId": null, "roundness": { "type": 2 }, "seed": 3, "version": 1,
+      "versionNonce": 3, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "points": [[0, 0], [140, 0]], "lastCommittedPoint": null,
+      "startBinding": null, "endBinding": null, "startArrowhead": null, "endArrowhead": "arrow"
+    },
+    {
+      "id": "text1", "type": "text", "x": 135, "y": 135, "width": 130, "height": 30,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100,
+      "groupIds": [], "frameId": null, "roundness": null, "seed": 4, "version": 1,
+      "versionNonce": 4, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "Hello, sample!", "fontSize": 20, "fontFamily": 5, "textAlign": "left",
+      "verticalAlign": "top", "containerId": null, "originalText": "Hello, sample!", "lineHeight": 1.25
+    }
+  ],
+  "appState": { "viewBackgroundColor": "#fa5252" },
+  "files": {}
+}
