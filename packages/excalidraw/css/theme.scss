@@ -17,13 +17,13 @@
   --focus-highlight-color: #{$color-blue-2};
   --icon-fill-color: var(--color-on-surface);
   --icon-green-fill-color: #{$color-green-9};
-  --default-bg-color: #fff;
-  --input-bg-color: #fff;
+  --default-bg-color: #fbf8f1;
+  --input-bg-color: #fbf8f1;
   --input-border-color: #{$color-gray-4};
   --input-hover-bg-color: #{$color-gray-1};
   --input-label-color: #{$color-gray-7};
-  --island-bg-color: #ffffff;
-  --island-bg-color-alt: #fff;
+  --island-bg-color: #fbf8f1;
+  --island-bg-color-alt: #fbf8f1;
   --keybinding-color: var(--color-gray-40);
   --link-color: #{$color-blue-7};
   --link-color-hover: #{$color-blue-8};
@@ -149,10 +149,10 @@
   --border-radius-md: 0.375rem;
   --border-radius-lg: 0.5rem;
 
-  --color-surface-high: #f1f0ff;
-  --color-surface-mid: #f6f6f9;
-  --color-surface-low: #ececf4;
-  --color-surface-lowest: #ffffff;
+  --color-surface-high: #efe6d4;
+  --color-surface-mid: #f5efe3;
+  --color-surface-low: #ebe3d2;
+  --color-surface-lowest: #fbf8f1;
   --color-on-surface: #1b1b1f;
   --color-brand-hover: #5753d0;
   --color-on-primary-container: #030064;
