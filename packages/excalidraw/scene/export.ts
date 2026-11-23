@@ -24,7 +24,7 @@ import {
 
 import { newElementWith } from "@excalidraw/element";
 
-import { isFrameLikeElement } from "@excalidraw/element";
+import { isElementHidden, isFrameLikeElement } from "@excalidraw/element";
 
 import {
   getElementsOverlappingFrame,
@@ -178,7 +178,7 @@ const prepareElementsForRender = ({
 };
 
 export const exportToCanvas = async (
-  elements: readonly NonDeletedExcalidrawElement[],
+  allElements: readonly NonDeletedExcalidrawElement[],
   appState: AppState,
   files: BinaryFiles,
   {
@@ -202,9 +202,12 @@ export const exportToCanvas = async (
     return { canvas, scale: appState.exportScale };
   },
   loadFonts: () => Promise<void> = async () => {
-    await Fonts.loadElementsFonts(elements);
+    await Fonts.loadElementsFonts(allElements);
   },
 ) => {
+  // layers panel: hidden elements are not exported
+  const elements = allElements.filter((element) => !isElementHidden(element));
+
   // load font faces before continuing, by default leverages browsers' [FontFace API](https://developer.mozilla.org/en-US/docs/Web/API/FontFace)
   await loadFonts();
 
@@ -291,7 +294,7 @@ const createHTMLComment = (text: string) => {
 };
 
 export const exportToSvg = async (
-  elements: readonly NonDeletedExcalidrawElement[],
+  allElements: readonly NonDeletedExcalidrawElement[],
   appState: {
     exportBackground: boolean;
     exportPadding?: number;
@@ -312,6 +315,9 @@ export const exportToSvg = async (
     reuseImages?: boolean;
   },
 ): Promise<SVGSVGElement> => {
+  // layers panel: hidden elements are not exported
+  const elements = allElements.filter((element) => !isElementHidden(element));
+
   const frameRendering = getFrameRenderingConfig(
     opts?.exportingFrame ?? null,
     appState.frameRendering ?? null,

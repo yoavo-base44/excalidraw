@@ -43,6 +43,7 @@ import { useAppProps, useEditorInterface, useStylesPanelMode } from "./App";
 import { OverwriteConfirmDialog } from "./OverwriteConfirm/OverwriteConfirm";
 import { sidebarRightIcon } from "./icons";
 import { DefaultSidebar } from "./DefaultSidebar";
+import { LayersPanelTrigger } from "./LayersPanel/LayersPanelTrigger";
 import { TTDDialog } from "./TTDDialog/TTDDialog";
 import { Stats } from "./Stats";
 import ElementLinkDialog from "./ElementLinkDialog";
@@ -417,7 +418,10 @@ const LayerUI = ({
               // hide button when sidebar docked
               (!isSidebarDocked ||
                 appState.openSidebar?.name !== DEFAULT_SIDEBAR.name) && (
-                <tunnels.DefaultSidebarTriggerTunnel.Out />
+                <>
+                  <LayersPanelTrigger />
+                  <tunnels.DefaultSidebarTriggerTunnel.Out />
+                </>
               )}
             {shouldShowStats && (
               <Stats

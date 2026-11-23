@@ -222,6 +222,19 @@
     "frames": "Frames",
     "texts": "Texts"
   },
+  "layers": {
+    "title": "Layers",
+    "searchPlaceholder": "Search layers",
+    "empty": "No elements yet",
+    "noResults": "No matching layers...",
+    "show": "Show layer",
+    "hide": "Hide layer",
+    "lock": "Lock layer",
+    "unlock": "Unlock layer",
+    "rename": "Rename layer",
+    "collapse": "Collapse group",
+    "expand": "Expand group"
+  },
   "buttons": {
     "clearReset": "Reset the canvas",
     "exportJSON": "Export to file",

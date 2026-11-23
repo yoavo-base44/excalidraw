@@ -1,6 +1,7 @@
 import {
   getCommonFrameId,
   getFrameChildrenInsertionIndex,
+  isElementHidden,
   isElementInViewport,
 } from "@excalidraw/element";
 
@@ -176,7 +177,9 @@ export class Renderer {
     > & {
       canvasNonce: string;
     }) => {
-      const elements = this.scene.getNonDeletedElements();
+      const elements = this.scene
+        .getNonDeletedElements()
+        .filter((element) => !isElementHidden(element));
 
       const { elementsMap, newElementCanvasElement } =
         this.getRenderableElementsMap({

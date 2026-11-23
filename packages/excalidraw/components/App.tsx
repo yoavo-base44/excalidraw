@@ -197,6 +197,7 @@ import {
   getVisibleSceneBounds,
   cropElement,
   wrapText,
+  isElementHidden,
   isElementLink,
   isMeasureTextSupported,
   normalizeText,
@@ -6533,6 +6534,8 @@ class App extends React.Component<AppProps, AppState> {
                   !(isTextElement(element) && element.containerId)),
             )
     )
+      // layers panel: hidden elements can't be hit
+      .filter((element) => !isElementHidden(element))
       .filter((el) => this.hitElement(x, y, el))
       .filter((element) => {
         // hitting a frame's element from outside the frame is not considered a hit

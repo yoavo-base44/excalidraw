@@ -19,6 +19,8 @@ import { getFrameChildren } from "./frame";
 import { LinearElementEditor } from "./linearElementEditor";
 import { selectGroupsForSelectedElements } from "./groups";
 
+import { isElementHidden } from "./layers";
+
 import { isNonDeletedElement } from ".";
 
 import type {
@@ -31,7 +33,7 @@ import type {
 } from "./types";
 
 const shouldIgnoreElementFromSelection = (element: ExcalidrawElement) =>
-  element.locked || isBoundToContainer(element);
+  element.locked || isBoundToContainer(element) || isElementHidden(element);
 
 const excludeElementsFromFrames = <T extends ExcalidrawElement>(
   selectedElements: readonly T[],
