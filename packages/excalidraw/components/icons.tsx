@@ -2439,6 +2439,30 @@ export const upIcon = createIcon(
   tablerIconProps,
 );
 
+// tabler-icons: stack-2
+export const layersIcon = createIcon(
+  <g>
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 4l-8 4l8 4l8 -4l-8 -4" />
+    <path d="M4 12l8 4l8 -4" />
+    <path d="M4 16l8 4l8 -4" />
+  </g>,
+  tablerIconProps,
+);
+
+// tabler-icons: grip-vertical
+export const dragHandleIcon = createIcon(
+  <g fill="currentColor" stroke="none">
+    <circle cx="9" cy="6" r="1" />
+    <circle cx="9" cy="12" r="1" />
+    <circle cx="9" cy="18" r="1" />
+    <circle cx="15" cy="6" r="1" />
+    <circle cx="15" cy="12" r="1" />
+    <circle cx="15" cy="18" r="1" />
+  </g>,
+  { ...tablerIconProps, fill: "currentColor", strokeWidth: 0 },
+);
+
 export const cropIcon = createIcon(
   <g strokeWidth="1.25">
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />

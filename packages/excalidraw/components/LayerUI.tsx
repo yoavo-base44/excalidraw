@@ -4,6 +4,7 @@ import React from "react";
 import {
   CLASSES,
   DEFAULT_SIDEBAR,
+  LAYERS_SIDEBAR_TAB,
   TOOL_TYPE,
   arrayToMap,
   capitalizeString,
@@ -43,6 +44,7 @@ import { useAppProps, useEditorInterface, useStylesPanelMode } from "./App";
 import { OverwriteConfirmDialog } from "./OverwriteConfirm/OverwriteConfirm";
 import { sidebarRightIcon } from "./icons";
 import { DefaultSidebar } from "./DefaultSidebar";
+import { LayersPanelTrigger } from "./LayersPanel/LayersPanel";
 import { TTDDialog } from "./TTDDialog/TTDDialog";
 import { Stats } from "./Stats";
 import ElementLinkDialog from "./ElementLinkDialog";
@@ -412,6 +414,15 @@ const LayerUI = ({
               editorInterface.formFactor === "phone",
               appState,
             )}
+            {defaultUIEnabled &&
+              !appState.viewModeEnabled &&
+              appState.openDialog?.name !== "elementLinkSelector" &&
+              // hide button when the layers tab is docked open
+              (!isSidebarDocked ||
+                appState.openSidebar?.name !== DEFAULT_SIDEBAR.name ||
+                appState.openSidebar?.tab !== LAYERS_SIDEBAR_TAB) && (
+                <LayersPanelTrigger className="default-sidebar-trigger" />
+              )}
             {!appState.viewModeEnabled &&
               appState.openDialog?.name !== "elementLinkSelector" &&
               // hide button when sidebar docked

@@ -22,6 +22,8 @@ import { getSelectedElements } from "@excalidraw/element";
 
 import { mutateElement, type ElementUpdate } from "@excalidraw/element";
 
+import { isElementHidden } from "./layer";
+
 import type {
   ExcalidrawElement,
   NonDeletedExcalidrawElement,
@@ -53,7 +55,9 @@ const getNonDeletedElements = <T extends ExcalidrawElement>(
   const elementsMap = new Map() as NonDeletedSceneElementsMap;
   const elements: NonDeleted<T>[] = [];
   for (const element of allElements) {
-    if (!element.isDeleted) {
+    // hidden layers stay part of the scene (and are saved), but they aren't
+    // rendered, selectable, or exported — i.e. they're not "live" elements
+    if (!element.isDeleted && !isElementHidden(element)) {
       elements.push(element as NonDeleted<T>);
       elementsMap.set(
         element.id,

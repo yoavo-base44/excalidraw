@@ -87,6 +87,12 @@ export { actionToggleStats } from "./actionToggleStats";
 export { actionUnbindText, actionBindText } from "./actionBoundText";
 export { actionLink } from "./actionLink";
 export { actionToggleElementLock } from "./actionElementLock";
+export {
+  actionToggleLayerVisibility,
+  actionToggleLayerLock,
+  actionRenameLayer,
+  actionMoveLayer,
+} from "./actionLayers";
 export { actionToggleLinearEditor } from "./actionLinearEditor";
 
 export { actionToggleSearchMenu } from "./actionToggleSearchMenu";

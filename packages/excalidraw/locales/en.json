@@ -195,7 +195,19 @@
     "boxSelectionContain": "Wrap",
     "boxSelectionOverlap": "Overlap",
     "arrowBinding": "Arrow binding",
-    "midpointSnapping": "Snap to midpoints"
+    "midpointSnapping": "Snap to midpoints",
+    "layersPanel": {
+      "title": "Layers",
+      "searchPlaceholder": "Find a layer...",
+      "empty": "No layers yet",
+      "noMatch": "No layers match your search",
+      "toggleVisibility": "Toggle visibility",
+      "toggleLock": "Toggle lock",
+      "rename": "Rename layer",
+      "reorder": "Reorder layer",
+      "collapse": "Collapse",
+      "expand": "Expand"
+    }
   },
   "elementLink": {
     "title": "Link to object",
